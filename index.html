@@ -1,155 +1,223 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>제100회 단국서예전</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>재학생 한문 작품 해석</h1>
-      <ul id="artList">
-        <li onclick="showModal('art1')"><b>邊詞</b>, 법학 22 이유찬</li>
-        <li onclick="showModal('art2')"><b>山中送別</b>, 산보 20 김민성</li>
-        <li onclick="showModal('art3')"><b>秋夜雨中</b>, 반도체 20 강정완</li>
-        <li onclick="showModal('art4')"><b>春花秋實</b>, 반도체 20 강정완</li>
-        <li onclick="showModal('art5')"><b>知之爲知之~</b>, 화공 22 김나예</li>
-        <li onclick="showModal('art6')"><b>淸平調</b>, 법학 20 최민선</li>
-        <li onclick="showModal('art7')"><b>野雪</b>, 법학 20 최민선</li>
-        <li onclick="showModal('art8')"><b>眞水無香</b>, 법학 20 최민선</li>
-        <li onclick="showModal('art9')"><b>玉不琢不成器</b>, 법학 20 최민선</li>
-        <li onclick="showModal('art10')">
-          <b>禮人不答反其敬</b>, 도예 20 정예진
-        </li>
-        <li onclick="showModal('art11')"><b>節臨乙瑛碑</b>, 화공 23 손범서</li>
-        <li onclick="showModal('art12')">
-          <b>節臨顔勤禮碑</b>, 경제 22 박소윤
-        </li>
-        <li onclick="showModal('art13')"><b>知者樂水~</b>, 경제 20 정다인</li>
-        <li onclick="showModal('art14')">
-          <b>節臨九成宮醴泉銘</b>, 경영 20 남기웅
-        </li>
-        <li onclick="showModal('art15')">
-          <b>有言者不必有德</b>, 반도체 24 임하진
-        </li>
-        <li onclick="showModal('art16')">
-          <b>元顯儁墓誌銘</b>, 반도체 24 임하진
-        </li>
-        <li onclick="showModal('art17')"><b>春興</b>, 한교 23 조한진</li>
-        <li onclick="showModal('art18')"><b>山中留客</b>, 한교 23 조한진</li>
-      </ul>
-    </div>
-
-    <!-- 모달 창 -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-      </div>
-    </div>
-
-    <script>
-      const descriptions = {
-        art1: {
-          title: "장경춘 - 변방의 노래",
-          text: "오원 땅의 봄빛은 예부터 더디 온다고 하지만\n\n이월인데도 수양버들은 아직 움도 틔우지 못했네\n\n이제야 황허 강가에는 얼음이 녹는 철이니\n\n바로 이때 장안에선 꽃이 떨어지는 때이네.",
-        },
-        art2: {
-          title: "왕유 - 산중송별",
-          text: "산중에서 그대와 헤어진 후로\n\n지는 해 보면서 사립문을 닫았네\n\n봄 풀은 새해에도 다시 푸를 테지만\n\n떠나간 그대는 돌아올지 못 올지",
-        },
-        art3: {
-          title: "최치원 - 추야우중",
-          text: "가을 바람에 이렇게 힘들여 읊고 있건만\n\n세상 어디에도 날 알아주는 이 없네\n\n창 밖엔 깊은 밤비 내리는데\n\n등불 아래 천만 리 떠나간 마음",
-        },
-        art4: {
-          title: "춘화추실",
-          text: "봄 동산에 꽃 피더니 가을 바람에 열매가 익어 가는구나",
-        },
-        art5: {
-          title: "공자 <논어> 中 - 지지위지지~",
-          text: "아는 것을 안다고 말하고 모르는 것을 모른다고 말하는 것이 곧 아는 것이다.",
-        },
-        art6: {
-          title: "이백 - 청평조",
-          text: "구름을 보면 그대 옷자락이, 꽃을 보면 그대 얼굴이 떠오르네\n\n봄바람은 난간을 훑고 이슬에 꽃은 무르익네\n\n만약 군옥산 어귀에서 그대를 볼 수 없다면\n\n요대를 향해 가다 보면 달 아래에서 볼 수 있겠지 ",
-        },
-        art7: {
-          title: "이양연 - 야설",
-          text: "눈을 뚫고 들판을 걸을 때\n\n모름지기 그 발걸음 어지러이 하지마라\n\n오늘 아침 내가 걸어간 발자국이\n\n마침내 뒷사람의 이정표가 될 것이니 ",
-        },
-        art8: {
-          title: "진수무향",
-          text: "참된 물은 향기가 없다",
-        },
-        art9: {
-          title: "옥불탁불성기",
-          text: "옥도 쪼지 않으면 그릇이 될 수 없다.",
-        },
-        art10: {
-          title: "맹자 <이루> 中 - 예인부답반기경",
-          text: "남에게 예를 갖추었는데 답이 없으면 자신의 공경을 반성하라 ",
-        },
-        art11: {
-          title: "을령비(임서)",
-          text: "사도인 신 웅과 사공인 신 계는 머리를 조아리고 아뢰옵니다.",
-        },
-        art12: {
-          title: "안근례비(임서)",
-          text: "수나라 사경국교서 동궁학사 장령왕 시독을 지냈고, 패국 유진과 경전의 뜻을 논쟁했는데 진이 여러 번 굴복했다.",
-        },
-        art13: {
-          title: "공자 <논어> 中 - 지자요수인자요산~",
-          text: "지혜로운 사람은 물을 좋아하고 어진 사람은 산을 좋아한다\n\n지혜로운 사람은 움직이고 어진 사람은 조용하며\n\n지혜로운 사람은 즐기고 어진 사람은 천수를 누린다",
-        },
-        art14: {
-          title: "구성궁예천명(임서)",
-          text: "본래 수원이 모자라 구하였으나 없는 것이 한 가지, 물에 있으니 이미 사람의 힘으로는 미칠 바가 못되었지만",
-        },
-        art15: {
-          title: "공자 <논어> 中 - 유언자불필유덕",
-          text: "훌륭한 말을 하는 사람이 반드시 덕이 있는 것은 아니다.",
-        },
-        art16: {
-          title: "원현준묘지병개명(임서)",
-          text: "대위 연창 2년 계사 2월 병진삭 29일 갑신에 처사를 지낸 원군의 묘지명",
-        },
-        art17: {
-          title: "정몽주 - 춘흥",
-          text: "가랑비 보슬보슬 내려 빗방울 지지 않더니\n\n밤 들자 나직한 빗소리 들리네\n\n눈도 녹아 앞개울 넘실거릴 게라\n\n봄 풀싹도 파릇이 돋았겠구나",
-        },
-        art18: {
-          title: "장욱 - 산중유객",
-          text: "산빛과 만물들 봄 햇살에 어른거리니\n\n날이 좀 흐리다고 내려갈 생각 마시게\n\n비 내릴 기색없는 청명한 날에도\n\n구름 깊은 곳에 들어가면 옷 젖기 마련이라오.",
-        },
-      };
-
-      // 모달 창 띄우기
-      function showModal(artKey) {
-        const art = descriptions[artKey];
-        document.getElementById("modalTitle").innerText = art.title;
-        document.getElementById("modalText").innerText = art.text;
-        document.getElementById("modalText").innerHTML = art.text.replace(
-          /\n/g,
-          "<br>"
-        );
-        document.getElementById("myModal").style.display = "block";
-      }
-
-      // 모달 창 닫기
-      function closeModal() {
-        document.getElementById("myModal").style.display = "none";
-      }
-
-      // 모달 창 외부 클릭 시 닫기
-      window.onclick = function (event) {
-        const modal = document.getElementById("myModal");
-        if (event.target == modal) {
-          modal.style.display = "none";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자동 뽀모도로 타이머</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
         }
-      };
-    </script>
-  </body>
+        .timer-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 360px;
+        }
+        .settings {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .settings div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .settings label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .settings input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+        }
+        #timer-display {
+            font-size: 72px;
+            font-weight: 600;
+            margin: 10px 0;
+            color: #d95550;
+        }
+        .buttons button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .buttons button:hover {
+            background-color: #357abd;
+        }
+        #status, #cycle-info {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer-container">
+    <div class="settings">
+        <div>
+            <label for="work-duration">집중 시간 (분)</label>
+            <input type="number" id="work-duration" value="25" min="1">
+        </div>
+        <div>
+            <label for="break-duration">휴식 시간 (분)</label>
+            <input type="number" id="break-duration" value="5" min="1">
+        </div>
+        <div>
+            <label for="cycles">반복 횟수</label>
+            <input type="number" id="cycles" value="4" min="1">
+        </div>
+    </div>
+    <div id="status">준비되셨나요? 🍅</div>
+    <div id="timer-display">25:00</div>
+    <div id="cycle-info">남은 횟수: 4</div>
+    <div class="buttons">
+        <button id="start">시작</button>
+        <button id="pause">일시정지</button>
+        <button id="reset">초기화</button>
+    </div>
+</div>
+
+<script>
+    const timerDisplay = document.getElementById('timer-display');
+    const startBtn = document.getElementById('start');
+    const pauseBtn = document.getElementById('pause');
+    const resetBtn = document.getElementById('reset');
+    const statusDisplay = document.getElementById('status');
+    const cycleInfo = document.getElementById('cycle-info');
+
+    const workDurationInput = document.getElementById('work-duration');
+    const breakDurationInput = document.getElementById('break-duration');
+    const cyclesInput = document.getElementById('cycles');
+
+    let countdown;
+    let timeLeft;
+    let isPaused = true;
+    let isWorkSession = true;
+    let currentCycle;
+    let totalCycles;
+
+    // *** 변경점 1: 알람 파일 경로 수정 ***
+    // HTML 파일과 같은 폴더에 있는 'Clock-alarm-electronic-beep.mp3' 파일을 사용합니다.
+    const alarmSound = new Audio('Clock-alarm-electronic-beep.mp3');
+
+    function initializeTimer() {
+        timeLeft = workDurationInput.value * 60;
+        totalCycles = cyclesInput.value;
+        currentCycle = totalCycles;
+        updateTimerDisplay();
+        updateCycleInfo();
+        statusDisplay.textContent = "준비되셨나요? 🍅";
+        document.title = "뽀모도로 타이머";
+    }
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        timerDisplay.textContent = display;
+        if (!isPaused) {
+            document.title = `${display} - ${isWorkSession ? '집중 시간' : '휴식 시간'}`;
+        }
+    }
+
+    function updateCycleInfo() {
+        cycleInfo.textContent = `남은 횟수: ${currentCycle}`;
+    }
+
+    function startTimer() {
+        if (isPaused) {
+            isPaused = false;
+            workDurationInput.disabled = true;
+            breakDurationInput.disabled = true;
+            cyclesInput.disabled = true;
+
+            countdown = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                } else {
+                    alarmSound.play();
+                    switchSession();
+                }
+            }, 1000);
+        }
+    }
+
+    function pauseTimer() {
+        isPaused = true;
+        clearInterval(countdown);
+    }
+
+    function resetTimer() {
+        pauseTimer();
+        isPaused = true;
+        isWorkSession = true;
+        workDurationInput.disabled = false;
+        breakDurationInput.disabled = false;
+        cyclesInput.disabled = false;
+        initializeTimer();
+    }
+
+    function switchSession() {
+        clearInterval(countdown); // 이전 타이머 확실히 제거
+        isPaused = true;
+
+        if (isWorkSession) { // 집중 세션이 끝났을 때
+            currentCycle--;
+            if (currentCycle < 0) { // 모든 세션 완료
+                statusDisplay.textContent = "모든 세션을 완료했습니다! 🎉";
+                resetTimer();
+                return;
+            }
+            isWorkSession = false;
+            statusDisplay.textContent = "휴식 시간! ☕️";
+            timeLeft = breakDurationInput.value * 60;
+        } else { // 휴식 세션이 끝났을 때
+            isWorkSession = true;
+            statusDisplay.textContent = "집중할 시간! 🍅";
+            timeLeft = workDurationInput.value * 60;
+            updateCycleInfo();
+        }
+        
+        updateTimerDisplay();
+
+        // *** 변경점 2: 다음 세션 자동 시작 ***
+        startTimer();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+    workDurationInput.addEventListener('change', initializeTimer);
+    breakDurationInput.addEventListener('change', initializeTimer);
+    cyclesInput.addEventListener('change', initializeTimer);
+
+    window.onload = initializeTimer;
+</script>
+
+</body>
 </html>
